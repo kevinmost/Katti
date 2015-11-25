@@ -39,19 +39,20 @@ dependencies {
   kapt "com.jakewharton:butterknife-compiler:$versionButterKnife"
 
   compile(
-      "org.jetbrains.kotlin:kotlin-stdlib:$versionKotlin",
+    "org.jetbrains.kotlin:kotlin-stdlib:$versionKotlin",
 
-      "com.android.support:support-v4:$versionSupportLibrary",
-      "com.android.support:appcompat-v7:$versionSupportLibrary",
-      "com.android.support:cardview-v7:$versionSupportLibrary",
+    "com.android.support:support-v4:$versionSupportLibrary",
+    "com.android.support:recyclerview-v7:$versionSupportLibrary",
+    "com.android.support:appcompat-v7:$versionSupportLibrary",
+    "com.android.support:cardview-v7:$versionSupportLibrary",
 
-      "com.squareup.picasso:picasso:$versionPicasso",
+    "com.squareup.picasso:picasso:$versionPicasso",
 
-      "com.squareup.okhttp:okhttp:$versionOkHttp",
+    "com.squareup.okhttp:okhttp:$versionOkHttp",
 
-      "com.squareup:otto:$versionOtto",
+    "com.squareup:otto:$versionOtto",
 
-      "io.reactivex:rxjava:$versionRxJava",
-      "io.reactivex:rxandroid:$versionRxAndroid",
+    "io.reactivex:rxjava:$versionRxJava",
+    "io.reactivex:rxandroid:$versionRxAndroid",
   )
 }

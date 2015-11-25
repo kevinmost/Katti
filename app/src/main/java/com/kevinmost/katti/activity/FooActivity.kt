@@ -7,7 +7,7 @@ import com.kevinmost.katti.dagger.AppComponent
 import com.kevinmost.katti.event.ButtonPressedEvent
 import com.squareup.otto.Subscribe
 
-class FooActivity: BaseActivity() {
+class FooActivity : BaseActivity() {
 
   var numTimesPressed = 0
 

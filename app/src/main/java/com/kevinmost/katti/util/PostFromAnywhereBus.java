@@ -2,7 +2,6 @@ package com.kevinmost.katti.util;
 
 import android.os.Handler;
 import android.os.Looper;
-
 import com.squareup.otto.Bus;
 
 public class PostFromAnywhereBus extends Bus {
