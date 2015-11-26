@@ -1,28 +1,11 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-
-kapt {
-  generateStubs = true
-}
+applyAndroidApp(this)
+kotlinize(this)
 
 android {
-  compileSdkVersion versionSdkCompile
-  buildToolsVersion versionBuildTools
-
   defaultConfig {
     applicationId "com.kevinmost.katti"
-    minSdkVersion versionSdkMin
-    targetSdkVersion versionSdkTarget
-    versionCode versionAppCode
-    versionName versionAppName
-  }
-  buildTypes {
-    release {
-      minifyEnabled false
-    }
-  }
-  sourceSets {
-    main.java.srcDirs += 'src/main/kotlin'
+    versionCode 1
+    versionName "1.0"
   }
 }
 
@@ -30,29 +13,27 @@ dependencies {
   compile fileTree(dir: 'libs', include: ['*.jar'])
   testCompile 'junit:junit:4.12'
 
-  compile "com.google.dagger:dagger:$versionDagger"
-  kapt "com.google.dagger:dagger-compiler:$versionDagger"
+  compile "com.google.dagger:dagger:$versions.dagger"
+  kapt "com.google.dagger:dagger-compiler:$versions.dagger"
   compile 'javax.inject:javax.inject:1'
   provided 'javax.annotation:jsr250-api:1.0'
 
-  compile "com.jakewharton:butterknife:$versionButterKnife"
-  kapt "com.jakewharton:butterknife-compiler:$versionButterKnife"
+  compile "com.jakewharton:butterknife:$versions.butterKnife"
+  kapt "com.jakewharton:butterknife-compiler:$versions.butterKnife"
 
   compile(
-    "org.jetbrains.kotlin:kotlin-stdlib:$versionKotlin",
+    "com.android.support:support-v4:$versions.supportLibrary",
+    "com.android.support:recyclerview-v7:$versions.supportLibrary",
+    "com.android.support:appcompat-v7:$versions.supportLibrary",
+    "com.android.support:cardview-v7:$versions.supportLibrary",
 
-    "com.android.support:support-v4:$versionSupportLibrary",
-    "com.android.support:recyclerview-v7:$versionSupportLibrary",
-    "com.android.support:appcompat-v7:$versionSupportLibrary",
-    "com.android.support:cardview-v7:$versionSupportLibrary",
+    "com.squareup.picasso:picasso:$versions.picasso",
 
-    "com.squareup.picasso:picasso:$versionPicasso",
+    "com.squareup.okhttp:okhttp:$versions.okHttp",
 
-    "com.squareup.okhttp:okhttp:$versionOkHttp",
+    "com.squareup:otto:$versions.otto",
 
-    "com.squareup:otto:$versionOtto",
-
-    "io.reactivex:rxjava:$versionRxJava",
-    "io.reactivex:rxandroid:$versionRxAndroid",
+    "io.reactivex:rxjava:$versions.rxJava",
+    "io.reactivex:rxandroid:$versions.rxAndroid",
   )
 }

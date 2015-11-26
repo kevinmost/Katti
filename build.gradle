@@ -16,29 +16,66 @@ allprojects {
     jcenter()
   }
   ext {
-    versionAppCode = 1
-    versionAppName = "1.0"
+    versions = new Versions()
+  }
+}
 
-    versionKotlin = '1.0.0-beta-2423'
+class Versions {
+  public final def
+    kotlin = '1.0.0-beta-2423',
 
-    versionSdkMin = 19
-    versionSdkTarget = 23
-    versionSdkCompile = 23
+    sdkMin = 19,
+    sdkTarget = 23,
+    sdkCompile = 23,
 
-    versionBuildTools = "23.0.2"
-    versionApt = "1.4"
+    buildTools = "23.0.2",
+    apt = "1.4",
 
-    versionSupportLibrary = "23.1.1"
+    supportLibrary = "23.1.1",
 
-    versionButterKnife = "8.0.0-SNAPSHOT"
-    versionDagger = "2.0.2"
-    versionPicasso = "2.5.2"
-    versionOkHttp = "2.5.0"
-    versionOtto = "1.3.8"
+    butterKnife = "8.0.0-SNAPSHOT",
+    dagger = "2.0.2",
+    picasso = "2.5.2",
+    okHttp = "2.5.0",
+    otto = "1.3.8",
 
-    versionRxJava = "1.0.16"
-    versionRxAndroid = "1.0.1"
+    rxJava = "1.0.16",
+    rxAndroid = "1.0.1"
+}
 
+def applyAndroidApp(def project) {
+  project.apply plugin: 'com.android.application'
+  applyCommonAndroidSettings(project)
+}
+
+def applyAndroidShared(def project) {
+  project.apply plugin: 'com.android.library'
+  applyCommonAndroidSettings(project)
+}
+
+private def applyCommonAndroidSettings(def project) {
+  project.android {
+    compileSdkVersion versions.sdkCompile
+    buildToolsVersion versions.buildTools
+
+    defaultConfig {
+      minSdkVersion versions.sdkMin
+      targetSdkVersion versions.sdkTarget
+    }
+
+    sourceSets {
+      main.java.srcDirs += 'src/main/kotlin'
+    }
+  }
+}
+
+def kotlinize(def project) {
+  project.apply plugin: 'kotlin-android'
+  project.kapt {
+    generateStubs = true
+  }
+  project.dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
   }
 }
 
@@ -48,8 +85,8 @@ subprojects {
       jcenter()
     }
     dependencies {
-      classpath "com.neenbedankt.gradle.plugins:android-apt:$versionApt"
-      classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versionKotlin"
+      classpath "com.neenbedankt.gradle.plugins:android-apt:$versions.apt"
+      classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
     }
   }
   repositories {
