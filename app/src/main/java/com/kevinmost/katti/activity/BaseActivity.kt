@@ -28,7 +28,7 @@ public abstract class BaseActivity : AppCompatActivity() {
     injectSelf(App.appComponent)
     setContentView(layoutRes())
     ButterKnife.bind(this)
-    if (toolbar != null && toolbar is Toolbar) {
+    if (toolbar is Toolbar) {
       initToolbar(toolbar as Toolbar)
     }
   }

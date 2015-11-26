@@ -33,7 +33,10 @@ allprojects {
         dagger = "2.0.2",
         picasso = "2.5.2",
         okHttp = "2.5.0",
+        retrofit = "2.0.0-beta2",
         otto = "1.3.8",
+
+        hugo = "1.2.1",
 
         rxJava = "1.0.16",
         rxAndroid = "1.0.1"
@@ -43,6 +46,7 @@ allprojects {
 
 def applyAndroidApp(def project) {
   project.apply plugin: 'com.android.application'
+  project.apply plugin: 'com.jakewharton.hugo'
   applyCommonAndroidSettings(project)
 }
 
@@ -81,10 +85,12 @@ subprojects {
   buildscript {
     repositories {
       jcenter()
+      mavenCentral()
     }
     dependencies {
       classpath "com.neenbedankt.gradle.plugins:android-apt:$versions.apt"
       classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+      classpath "com.jakewharton.hugo:hugo-plugin:$versions.hugo"
     }
   }
   repositories {

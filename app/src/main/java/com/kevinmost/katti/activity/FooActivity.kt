@@ -5,7 +5,9 @@ import butterknife.OnClick
 import com.kevinmost.katti.R
 import com.kevinmost.katti.dagger.AppComponent
 import com.kevinmost.katti.event.ButtonPressedEvent
+import com.squareup.otto.Bus
 import com.squareup.otto.Subscribe
+import javax.inject.Inject
 
 class FooActivity : BaseActivity() {
 
@@ -13,6 +15,7 @@ class FooActivity : BaseActivity() {
 
   @Subscribe
   public fun toastedPoastedEvent(event: ButtonPressedEvent) {
+
     numTimesPressed = event.numTimesPressed
     Toast.makeText(this, "You clicked the button $numTimesPressed times", Toast.LENGTH_SHORT).show()
   }

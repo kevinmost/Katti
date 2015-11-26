@@ -30,6 +30,7 @@ dependencies {
     "com.squareup.picasso:picasso:$versions.picasso",
 
     "com.squareup.okhttp:okhttp:$versions.okHttp",
+    "com.squareup.retrofit:retrofit:$versions.retrofit",
 
     "com.squareup:otto:$versions.otto",
 
