@@ -10,8 +10,9 @@ import com.squareup.otto.Subscribe
 import javax.inject.Inject
 
 class FooActivity : BaseActivity() {
-
   var numTimesPressed = 0
+
+  override val layoutRes = R.layout.foo
 
   @Subscribe
   public fun toastedPoastedEvent(event: ButtonPressedEvent) {
@@ -24,10 +25,6 @@ class FooActivity : BaseActivity() {
   fun poastAboutToast() {
     // Roundabout, unnecessary use of the bus just to make sure things are working!
     bus.post(ButtonPressedEvent(numTimesPressed + 1))
-  }
-
-  override fun layoutRes(): Int {
-    return R.layout.foo
   }
 
   override fun injectSelf(appComponent: AppComponent) {

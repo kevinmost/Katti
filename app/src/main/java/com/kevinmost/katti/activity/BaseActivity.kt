@@ -23,10 +23,13 @@ public abstract class BaseActivity : AppCompatActivity() {
 
   private val toolbar: Toolbar? by bindOptionalView(R.id.toolbar)
 
+  @LayoutRes
+  protected abstract val layoutRes: Int
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     injectSelf(App.appComponent)
-    setContentView(layoutRes())
+    setContentView(layoutRes)
     ButterKnife.bind(this)
     if (toolbar is Toolbar) {
       initToolbar(toolbar as Toolbar)
@@ -52,9 +55,6 @@ public abstract class BaseActivity : AppCompatActivity() {
   protected fun getToolbarTitle(): String {
     return resources.getString(R.string.app_name);
   }
-
-  @LayoutRes
-  abstract fun layoutRes(): Int
 
   abstract fun injectSelf(appComponent: AppComponent)
 }

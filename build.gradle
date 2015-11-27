@@ -1,23 +1,9 @@
-buildscript {
-  repositories {
-    jcenter()
-  }
-  dependencies {
-    classpath "com.android.tools.build:gradle:1.5.0"
-  }
-}
-
-task clean(type: Delete) {
-  delete rootProject.buildDir
-}
-
 allprojects {
-  repositories {
-    jcenter()
-  }
   ext {
     versions = new Object() {
       public final def
+        gradleAndroidPlugin = "1.5.0",
+
         kotlin = '1.0.0-beta-2423',
 
         sdkMin = 19,
@@ -84,19 +70,26 @@ def kotlinize(def project) {
 }
 
 subprojects {
+  repositories {
+    jcenter()
+    mavenCentral()
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+  }
+
   buildscript {
     repositories {
       jcenter()
       mavenCentral()
     }
+
     dependencies {
-      classpath "com.neenbedankt.gradle.plugins:android-apt:$versions.apt"
+      classpath "com.android.tools.build:gradle:$versions.gradleAndroidPlugin"
       classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
       classpath "com.jakewharton.hugo:hugo-plugin:$versions.hugo"
     }
   }
-  repositories {
-    jcenter()
-    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
-  }
+}
+
+task clean(type: Delete) {
+  delete rootProject.buildDir
 }
