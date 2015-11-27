@@ -31,6 +31,8 @@ dependencies {
     "com.android.support:appcompat-v7:$versions.supportLibrary",
     "com.android.support:cardview-v7:$versions.supportLibrary",
 
+    "com.jakewharton.timber:timber:$versions.timber",
+
     "com.squareup.picasso:picasso:$versions.picasso",
 
     "com.squareup.okhttp:okhttp:$versions.okHttp",
