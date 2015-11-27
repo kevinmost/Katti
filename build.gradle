@@ -38,6 +38,8 @@ allprojects {
 
         hugo = "1.2.1",
 
+        anko = "0.7.3",
+
         rxJava = "1.0.16",
         rxAndroid = "1.0.1"
     }
