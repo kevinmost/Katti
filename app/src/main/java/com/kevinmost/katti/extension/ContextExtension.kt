@@ -13,7 +13,7 @@ fun Context.getColorCompat(@ColorRes colorRes: Int): Int {
 }
 
 fun Context.toast(text: CharSequence, duration: Int = Toast.LENGTH_SHORT) {
-  Toast.makeText(this, text, duration)
+  Toast.makeText(this, text, duration).show()
 }
 
 val Context.windowManager: WindowManager

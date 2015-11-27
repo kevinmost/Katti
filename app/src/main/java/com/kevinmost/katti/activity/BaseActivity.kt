@@ -10,6 +10,9 @@ import com.kevinmost.katti.R
 import com.kevinmost.katti.dagger.AppComponent
 import com.kevinmost.katti.extension.bindOptionalView
 import com.kevinmost.katti.extension.getColorCompat
+import com.kevinmost.katti.extension.watchForLeaks
+import com.squareup.leakcanary.LeakCanary
+import com.squareup.leakcanary.RefWatcher
 import com.squareup.otto.Bus
 import javax.inject.Inject
 
@@ -20,6 +23,9 @@ public abstract class BaseActivity : AppCompatActivity() {
 
   @Inject
   protected lateinit var app: App
+
+  @Inject
+  protected lateinit var refWatcher: RefWatcher
 
   private val toolbar: Toolbar? by bindOptionalView(R.id.toolbar)
 
@@ -50,6 +56,11 @@ public abstract class BaseActivity : AppCompatActivity() {
   override fun onStop() {
     bus.unregister(this)
     super.onStop()
+  }
+
+  override fun onDestroy() {
+    super.onDestroy()
+    watchForLeaks()
   }
 
   protected fun getToolbarTitle(): String {

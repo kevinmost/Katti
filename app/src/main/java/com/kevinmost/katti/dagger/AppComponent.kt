@@ -1,6 +1,7 @@
 package com.kevinmost.katti.dagger
 
 import com.kevinmost.katti.activity.FooActivity
+import com.squareup.leakcanary.RefWatcher
 import dagger.Component
 import javax.inject.Singleton
 

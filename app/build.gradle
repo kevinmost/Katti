@@ -21,6 +21,10 @@ dependencies {
   compile "com.jakewharton:butterknife:$versions.butterKnife"
   kapt "com.jakewharton:butterknife-compiler:$versions.butterKnife"
 
+  debugCompile "com.squareup.leakcanary:leakcanary-android:$versions.leakCanary"
+  releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$versions.leakCanary"
+
+
   compile(
     "com.android.support:support-v4:$versions.supportLibrary",
     "com.android.support:recyclerview-v7:$versions.supportLibrary",
