@@ -24,4 +24,11 @@ object App : Application() {
       Timber.plant(Timber.DebugTree())
     }
   }
+
+  /**
+   * A common pitfall is to rely on BuildConfig.DEBUG when working with a multi-module project;
+   * if checked from a library project, BuildConfig.DEBUG is always false. Better to make the app
+   * implement it itself.
+   */
+  fun isDebugBuildType(): Boolean = BuildConfig.DEBUG
 }

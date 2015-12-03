@@ -11,9 +11,8 @@ import com.kevinmost.katti.dagger.AppComponent
 import com.kevinmost.katti.extension.bindOptionalView
 import com.kevinmost.katti.extension.getColorCompat
 import com.kevinmost.katti.extension.watchForLeaks
-import com.squareup.leakcanary.LeakCanary
-import com.squareup.leakcanary.RefWatcher
 import com.squareup.otto.Bus
+import com.squareup.picasso.Picasso
 import javax.inject.Inject
 
 public abstract class BaseActivity : AppCompatActivity() {
@@ -25,14 +24,17 @@ public abstract class BaseActivity : AppCompatActivity() {
   protected lateinit var app: App
 
   @Inject
-  protected lateinit var refWatcher: RefWatcher
+  protected lateinit var picasso: Picasso
 
   private val toolbar: Toolbar? by bindOptionalView(R.id.toolbar)
 
   @LayoutRes
   protected abstract val layoutRes: Int
 
-  override fun onCreate(savedInstanceState: Bundle?) {
+  protected val toolbarTitle: String
+    get() = resources.getString(R.string.app_name)
+
+  protected override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     injectSelf(App.appComponent)
     setContentView(layoutRes)
@@ -42,30 +44,26 @@ public abstract class BaseActivity : AppCompatActivity() {
     }
   }
 
-  private fun initToolbar(toolbar: Toolbar) {
-    setSupportActionBar(toolbar)
-    toolbar.title = getToolbarTitle()
-    toolbar.setTitleTextColor(getColorCompat(android.R.color.white))
-  }
-
-  override fun onStart() {
+  protected override fun onStart() {
     super.onStart()
     bus.register(this)
   }
 
-  override fun onStop() {
+  protected override fun onStop() {
     bus.unregister(this)
     super.onStop()
   }
 
-  override fun onDestroy() {
+  protected override fun onDestroy() {
     super.onDestroy()
     watchForLeaks()
   }
 
-  protected fun getToolbarTitle(): String {
-    return resources.getString(R.string.app_name);
+  private fun initToolbar(toolbar: Toolbar) {
+    setSupportActionBar(toolbar)
+    toolbar.title = toolbarTitle
+    toolbar.setTitleTextColor(getColorCompat(android.R.color.white))
   }
 
-  abstract fun injectSelf(appComponent: AppComponent)
+  protected abstract fun injectSelf(appComponent: AppComponent)
 }
