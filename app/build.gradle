@@ -46,5 +46,7 @@ dependencies {
     "org.jetbrains.anko:anko-sdk23:$versions.anko",
     "org.jetbrains.anko:anko-support-v4:$versions.anko",
     "org.jetbrains.anko:anko-appcompat-v7:$versions.anko",
+
+    "com.google.android.gms:play-services-analytics:$versions.googleAnalytics"
   )
 }

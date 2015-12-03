@@ -1,6 +1,9 @@
 package com.kevinmost.katti.dagger
 
+import com.google.android.gms.analytics.GoogleAnalytics
+import com.google.android.gms.analytics.Tracker
 import com.kevinmost.katti.App
+import com.kevinmost.katti.R
 import com.kevinmost.katti.util.PostFromAnywhereBus
 import com.squareup.leakcanary.LeakCanary
 import com.squareup.leakcanary.RefWatcher
@@ -29,5 +32,12 @@ class AppModule(private val app: App) {
   @Singleton
   fun okHttpClient(): OkHttpClient {
     return OkHttpClient()
+  }
+
+  @Provides
+  @Singleton
+  fun tracker(app: App): Tracker {
+    val analytics = GoogleAnalytics.getInstance(app)
+    return analytics.newTracker(app.getString(R.string.analytics_tracker_id))
   }
 }
