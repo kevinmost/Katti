@@ -36,7 +36,7 @@ public abstract class BaseActivity : AppCompatActivity() {
 
   protected override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    injectSelf(App.appComponent)
+    injectSelf(App.INSTANCE.appComponent)
     setContentView(layoutRes)
     ButterKnife.bind(this)
     if (toolbar is Toolbar) {

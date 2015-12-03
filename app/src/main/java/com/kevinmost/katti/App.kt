@@ -1,13 +1,19 @@
 package com.kevinmost.katti
 
 import android.app.Application
+import android.content.Context
 import com.kevinmost.katti.dagger.AppModule
 import com.kevinmost.katti.dagger.DaggerAppComponent
 import com.squareup.leakcanary.LeakCanary
 import com.squareup.leakcanary.RefWatcher
 import timber.log.Timber
 
-object App : Application() {
+class App : Application() {
+  companion object {
+    @JvmStatic
+    lateinit var INSTANCE: App
+  }
+
   val appComponent = DaggerAppComponent
       .builder()
       .appModule(AppModule(this))
@@ -18,6 +24,7 @@ object App : Application() {
     get
 
   override fun onCreate() {
+    INSTANCE = this
     super.onCreate()
     refWatcher = LeakCanary.install(this)
     if (BuildConfig.DEBUG) {
