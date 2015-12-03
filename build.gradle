@@ -4,7 +4,7 @@ allprojects {
       public final def
         gradleAndroidPlugin = "1.5.0",
 
-        kotlin = '1.0.0-beta-2423',
+        kotlin = '1.0.0-beta-3593',
 
         sdkMin = 19,
         sdkTarget = 23,
